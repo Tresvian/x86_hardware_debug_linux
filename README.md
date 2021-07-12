@@ -45,7 +45,9 @@ typedef struct {
 
 
 ## Summary
-Set the x86 register DR7, and then control it with the EFLAGS register. Registers DR0, DR1, DR2, and DR3 are your breakpoint location, and DR6 is your status.On Linux, the breakpoint will get hit and send a signal to the kernel. As the user, you will receive a [SIGTRAP](https://man7.org/linux/man-pages/man7/signal.7.html) on the process. Catch this SIGTRAP, do whatever you need, and then resume execution by setting EFLAGS. For the most part, setting the registers and controlling execution is done with [ptrace](https://man7.org/linux/man-pages/man2/ptrace.2.html).
+Set the x86 register DR7, and then control it with the EFLAGS register. Registers DR0, DR1, DR2, and DR3 are your breakpoint location, and DR6 is your status.
+
+On Linux, the breakpoint will get hit and send a signal to the kernel. As the user, you will receive a [SIGTRAP](https://man7.org/linux/man-pages/man7/signal.7.html) on the process. Catch this SIGTRAP, do whatever you need, and then resume execution by setting EFLAGS. For the most part, setting the registers and controlling execution is done with [ptrace](https://man7.org/linux/man-pages/man2/ptrace.2.html).
 
 
 ## Implementation
@@ -83,6 +85,7 @@ Clear the status register. Just in case.
 Resume.
 
 So how do we step and continue execution? If you did a software breakpoint, you'd have to walk backwards and do repeated syscalls to continue. Not here.
+
 10. `ptrace(PTRACE_GETREGS, target_pid, NULL, &regs);`
 regs will come from a struct `struct user_regs_struct regs;` as defined by [user.h](https://sites.uclouvain.be/SystInfo/usr/include/sys/user.h.html)
 
