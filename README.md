@@ -14,10 +14,7 @@ This README was updated on 11Jul2021, while Intel updated their manuals on 06Jul
 We will want the manual for "debugging" which is: **Intel® 64 and IA-32 Architectures Software Developer's Manual Combined Volumes 3A, 3B, 3C, and 3D: System Programming Guide** and scrolling down to **CHAPTER 17 DEBUG, BRANCH PROFILE, TSC, AND INTEL® RESOURCE DIRECTORTECHNOLOGY (INTEL® RDT) FEATURES** Vol. 3B 17-1 at the time of this write-up.
 
 
-If you want to understand what happens at the source, read this briefly until it doesn't seem relevant anymore (5-10 pages).
-
-
-[Originally in my research, this stackoverflow post was the closest thing to what I needed](https://stackoverflow.com/questions/40818920/how-to-set-the-value-of-dr7-register-in-order-to-create-a-hardware-breakpoint-on) but lacked some details on further implementation. I will take parts from the code here:
+[Originally in my research, this Stack Overflow post was the closest thing to what I needed](https://stackoverflow.com/questions/40818920/how-to-set-the-value-of-dr7-register-in-order-to-create-a-hardware-breakpoint-on), but it lacked some details on further implementation. I will take parts from the code here:
 ```#define DR_OFFSET(x) (((struct user *)0)->u_debugreg + x)
 typedef struct {
     uint dr0_local:     1;
