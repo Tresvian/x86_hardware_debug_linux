@@ -15,7 +15,8 @@ We will want the manual for "debugging" which is: **Intel® 64 and IA-32 Archite
 
 
 [Originally in my research, this Stack Overflow post was the closest thing to what I needed](https://stackoverflow.com/questions/40818920/how-to-set-the-value-of-dr7-register-in-order-to-create-a-hardware-breakpoint-on), but it lacked some details on further implementation. I will take parts from the code here:
-```#define DR_OFFSET(x) (((struct user *)0)->u_debugreg + x)
+```
+#define DR_OFFSET(x) (((struct user *)0)->u_debugreg + x)
 typedef struct {
     uint dr0_local:     1;
     uint dr0_global:    1;
